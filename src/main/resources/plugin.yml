@@ -27,3 +27,12 @@ permissions:
   railcontrol.railcontrol.config.set:
     description: Change plugin settings values
     default: op
+
+  railcontrol.speedsign:
+    description: Place speed sign
+    default: true
+
+  railcontrol.speedsign.auto:
+    description: Set auto option in speed sign
+    default: true
+

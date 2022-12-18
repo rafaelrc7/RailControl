@@ -3,6 +3,7 @@ package com.rafaelrc.railcontrol;
 import com.rafaelrc.railcontrol.command.railcontrol.RailControlCommand;
 import com.rafaelrc.railcontrol.config.RailControlConfig;
 import com.rafaelrc.railcontrol.listener.minecart.*;
+import com.rafaelrc.railcontrol.listener.speedsign.SignPlacementListener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,6 +19,7 @@ public final class RailControl extends JavaPlugin {
 
         pluginManager.registerEvents(new MinecartCollisionListener(this), this);
         pluginManager.registerEvents(new MinecartSpeedLimitListener(this), this);
+        pluginManager.registerEvents(new SignPlacementListener(this), this);
 
         Objects.requireNonNull(this.getCommand("railcontrol")).setExecutor(new RailControlCommand(this));
     }
