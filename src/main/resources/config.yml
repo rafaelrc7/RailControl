@@ -1,0 +1,20 @@
+minecart-speed:
+  default: 0.4
+  maximum: 4.0
+  enforce-maximum: false
+
+minecart-collision:
+  modify-collision: true
+  minimum-affected-speed: 0.5
+
+  collided-entity-damage-multiplier: 6.0
+  passenger-damage-multiplier: 6.0
+
+  entity-collision:
+    damage-collided-entity: true
+    damage-passenger: false
+    halt-minecart: false
+
+  block-collision:
+    damage-passenger: true
+    break-minecart: false
