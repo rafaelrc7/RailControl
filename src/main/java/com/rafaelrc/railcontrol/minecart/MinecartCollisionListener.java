@@ -22,7 +22,7 @@ public class MinecartCollisionListener implements Listener {
             return;
         }
 
-        if (vehicle.getVelocity().length() <= 2.05) {
+        if (vehicle.getVelocity().length() <= 2.0) {
             return;
         }
 
@@ -32,7 +32,7 @@ public class MinecartCollisionListener implements Listener {
             return;
         }
 
-        hitEntity.damage(maxSpeed*7, minecart);
+        hitEntity.damage(maxSpeed*6, minecart);
 
         event.setCancelled(true);
         event.setCollisionCancelled(true);
@@ -46,7 +46,7 @@ public class MinecartCollisionListener implements Listener {
             return;
         }
 
-        if (vehicle.getVelocity().length() <= 2.05) {
+        if (vehicle.getVelocity().length() <= 2.0) {
             return;
         }
 
@@ -58,6 +58,6 @@ public class MinecartCollisionListener implements Listener {
 
         vehicle.getPassengers().stream()
                 .filter(e -> e instanceof LivingEntity)
-                .forEach(e -> ((LivingEntity)e).damage(maxSpeed*7, minecart));
+                .forEach(e -> ((LivingEntity)e).damage(maxSpeed*6, minecart));
     }
 }

@@ -52,7 +52,7 @@ public class MinecartSpeedLimitListener implements Listener {
                         if (maxSpeed > 0) {
                             minecart.setMaxSpeed(maxSpeed);
                         }
-                    } catch (NumberFormatException ignored) { }
+                    } catch (NumberFormatException ignored) { /* ignore line */ }
                 }
             }
         }
