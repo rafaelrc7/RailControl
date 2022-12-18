@@ -13,8 +13,8 @@ public final class RailControl extends JavaPlugin {
     public void onEnable() {
         PluginManager pluginManager = getServer().getPluginManager();
 
-        pluginManager.registerEvents(new MinecartCollisionListener(), this);
-        pluginManager.registerEvents(new MinecartSpeedLimitListener(), this);
+        pluginManager.registerEvents(new MinecartCollisionListener(this), this);
+        pluginManager.registerEvents(new MinecartSpeedLimitListener(this), this);
     }
 
     public RailControlConfig getPluginConfig() {

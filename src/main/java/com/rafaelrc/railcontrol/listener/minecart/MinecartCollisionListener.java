@@ -1,5 +1,7 @@
 package com.rafaelrc.railcontrol.listener.minecart;
 
+import com.rafaelrc.railcontrol.RailControl;
+import com.rafaelrc.railcontrol.config.MinecartCollisionConfig;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Vehicle;
@@ -10,15 +12,27 @@ import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
 
 public class MinecartCollisionListener implements Listener {
 
+    private final MinecartCollisionConfig config;
+
+
+    public MinecartCollisionListener(RailControl plugin) {
+        this.config = plugin.getPluginConfig().getMinecartCollision();
+    }
+
+
     @EventHandler
     public void onVehicleEntityCollision(VehicleEntityCollisionEvent event) {
+        if (!config.isModified()) {
+            return;
+        }
+
         Vehicle vehicle = event.getVehicle();
 
         if (!(vehicle instanceof Minecart minecart)) {
             return;
         }
 
-        if (!(event.getEntity() instanceof LivingEntity hitEntity)) {
+        if (!(event.getEntity() instanceof LivingEntity collidedEntity)) {
             return;
         }
 
@@ -28,18 +42,32 @@ public class MinecartCollisionListener implements Listener {
 
         double maxSpeed = minecart.getMaxSpeed();
 
-        if (maxSpeed <= 0.5) {
+        if (maxSpeed < config.getMinimumAffectedSpeed()) {
             return;
         }
 
-        hitEntity.damage(maxSpeed*6, minecart);
+        if (config.onEntity().shouldDamageCollidedEntity()) {
+            collidedEntity.damage(maxSpeed * config.getCollidedEntityDamageMultiplier(), minecart);
+        }
 
-        event.setCancelled(true);
-        event.setCollisionCancelled(true);
+        if (config.onEntity().shouldDamagePassenger()) {
+            vehicle.getPassengers().stream()
+                    .filter(e -> e instanceof LivingEntity)
+                    .forEach(e -> ((LivingEntity)e).damage(maxSpeed * config.getPassengerDamageMultiplier(), collidedEntity));
+        }
+
+        if (!config.onEntity().shouldHaltMinecart()) {
+            event.setCancelled(true);
+            event.setCollisionCancelled(true);
+        }
     }
 
     @EventHandler
     public void onVehicleBlockCollision(VehicleBlockCollisionEvent event) {
+        if (!config.isModified()) {
+            return;
+        }
+
         Vehicle vehicle = event.getVehicle();
 
         if (!(vehicle instanceof Minecart minecart)) {
@@ -52,12 +80,18 @@ public class MinecartCollisionListener implements Listener {
 
         double maxSpeed = minecart.getMaxSpeed();
 
-        if (maxSpeed <= 0.5) {
+        if (maxSpeed < config.getMinimumAffectedSpeed()) {
             return;
         }
 
-        vehicle.getPassengers().stream()
-                .filter(e -> e instanceof LivingEntity)
-                .forEach(e -> ((LivingEntity)e).damage(maxSpeed*6, minecart));
+        if (config.onBlock().shouldDamagePassenger()) {
+            vehicle.getPassengers().stream()
+                    .filter(e -> e instanceof LivingEntity)
+                    .forEach(e -> ((LivingEntity)e).damage(maxSpeed * config.getPassengerDamageMultiplier()));
+        }
+
+        if (config.onBlock().shouldBreakMinecart()) {
+            minecart.setDamage(minecart.getDamage() + maxSpeed * 3);
+        }
     }
 }
