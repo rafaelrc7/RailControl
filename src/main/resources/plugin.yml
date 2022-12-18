@@ -1,5 +1,29 @@
 name: RailControl
 version: '${version}'
+description: "Improvements to the basic Minecraft minecart"
+authors: [ rafaelrc ]
 main: com.rafaelrc.railcontrol.RailControl
 api-version: 1.19
-authors: [ rafaelrc ]
+
+commands:
+  railcontrol:
+    description: Rail Control command
+    usage: /<command> [config]
+    permission: railcontrol.railcontrol
+
+permissions:
+  railcontrol.railcontrol:
+    description: Use railcontrol command
+    default: true
+
+  railcontrol.railcontrol.config:
+    description: Manage plugin settings trough the command interface
+    default: op
+
+  railcontrol.railcontrol.config.get:
+    description: Check plugin settings values
+    default: op
+
+  railcontrol.railcontrol.config.set:
+    description: Change plugin settings values
+    default: op
