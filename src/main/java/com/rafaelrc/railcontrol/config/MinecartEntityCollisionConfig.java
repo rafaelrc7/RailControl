@@ -18,12 +18,24 @@ public class MinecartEntityCollisionConfig {
         return config.getBoolean(basePath + "damage-collided-entity", true);
     }
 
+    public void setShouldDamageCollidedEntity(boolean val) {
+        config.set(basePath + "damage-collided-entity", val);
+    }
+
     public boolean shouldDamagePassenger() {
         return config.getBoolean(basePath + "damage-passenger", false);
     }
 
+    public void setShouldDamagePassenger(boolean val) {
+        config.set(basePath + "damage-passenger", val);
+    }
+
     public boolean shouldHaltMinecart() {
         return config.getBoolean(basePath + "halt-minecart", false);
+    }
+
+    public void setShouldHaltMinecart(boolean val) {
+        config.set(basePath + "halt-minecart", val);
     }
 
 }

@@ -22,6 +22,10 @@ public class RailControlConfig {
     }
 
 
+    public void save() {
+        plugin.saveConfig();
+    }
+
     public MinecartSpeedConfig getMinecartSpeed() {
         return minecartSpeedConfig;
     }

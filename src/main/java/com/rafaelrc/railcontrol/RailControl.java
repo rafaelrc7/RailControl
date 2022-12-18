@@ -17,6 +17,11 @@ public final class RailControl extends JavaPlugin {
         pluginManager.registerEvents(new MinecartSpeedLimitListener(this), this);
     }
 
+    @Override
+    public void onDisable() {
+        config.save();
+    }
+
     public RailControlConfig getPluginConfig() {
         return config;
     }

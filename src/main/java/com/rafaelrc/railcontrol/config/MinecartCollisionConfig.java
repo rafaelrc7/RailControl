@@ -32,16 +32,32 @@ public class MinecartCollisionConfig {
         return config.getBoolean(basePath + "modify-collision", true);
     }
 
+    public void setIsModified(boolean val) {
+        config.set(basePath + "modify-collision", val);
+    }
+
     public double getMinimumAffectedSpeed() {
         return config.getDouble(basePath + "minimum-affected-speed", 0.5);
+    }
+
+    public void setMinimumAffectedSpeed(double val) {
+        config.set(basePath + "minimum-affected-speed", val);
     }
 
     public double getCollidedEntityDamageMultiplier() {
         return config.getDouble(basePath + "collided-entity-damage-multiplier", 6.0);
     }
 
+    public void setCollidedEntityDamageMultiplier(double val) {
+        config.set(basePath + "collided-entity-damage-multiplier", val);
+    }
+
     public double getPassengerDamageMultiplier() {
         return config.getDouble(basePath + "passenger-damage-multiplier", 6.0);
+    }
+
+    public void setPassengerDamageMultiplier(double val) {
+        config.set(basePath + "passenger-damage-multiplier", val);
     }
 
 }

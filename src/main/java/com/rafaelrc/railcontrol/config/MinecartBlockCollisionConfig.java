@@ -18,8 +18,16 @@ public class MinecartBlockCollisionConfig {
         return config.getBoolean(basePath + "damage-passenger", true);
     }
 
+    public void setShouldDamagePassenger(boolean val) {
+        config.set(basePath + "damage-passenger", val);
+    }
+
     public boolean shouldBreakMinecart() {
         return config.getBoolean(basePath + "break-minecart", false);
+    }
+
+    public void setShouldBreakMinecart(boolean val) {
+        config.set(basePath + "break-minecart", val);
     }
 
 }
