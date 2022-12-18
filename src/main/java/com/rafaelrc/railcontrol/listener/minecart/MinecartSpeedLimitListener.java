@@ -1,4 +1,4 @@
-package com.rafaelrc.railcontrol.minecart;
+package com.rafaelrc.railcontrol.listener.minecart;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

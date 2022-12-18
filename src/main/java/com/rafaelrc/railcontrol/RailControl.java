@@ -1,6 +1,6 @@
 package com.rafaelrc.railcontrol;
 
-import com.rafaelrc.railcontrol.minecart.*;
+import com.rafaelrc.railcontrol.listener.minecart.*;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,4 +1,4 @@
-package com.rafaelrc.railcontrol.minecart;
+package com.rafaelrc.railcontrol.listener.minecart;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Minecart;
