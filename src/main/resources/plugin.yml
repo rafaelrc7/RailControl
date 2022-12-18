@@ -1,0 +1,5 @@
+name: RailControl
+version: '${version}'
+main: com.rafaelrc.railcontrol.RailControl
+api-version: 1.19
+authors: [ rafaelrc ]
